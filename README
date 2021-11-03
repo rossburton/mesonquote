@@ -1,0 +1,16 @@
+$ meson build --native-file=noargs.native && ninja -C build/ out && cat build/out
+
+out contains the argparse data:
+
+  Namespace(command='/usr/bin/whoami')
+
+However,
+$ meson build --native-file=args.native && ninja -C build/ out && cat build/out
+
+FAILED: out
+/home/ross/.local/bin/meson --internal exe --capture out -- /home/ross/Mess/mesonquote/run.py bash --version
+--- stderr ---
+usage: run.py [-h] command
+run.py: error: unrecognized arguments: --version
+
+The argument to the script needs to be quoted.
